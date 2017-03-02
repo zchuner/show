@@ -1,0 +1,89 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>倒计时 </title>
+<!--[if lte IE 6]>
+<script src="js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('a');
+    </script>
+<![endif]-->
+<link href="style/daojishi.css" rel="stylesheet" type="text/css" />
+<script>
+    window.onload=function(){
+        var oDiv=document.getElementById('fill_in');
+        var aInp=oDiv.getElementsByTagName('input');
+        var aA=document.getElementsByTagName('a')[0];
+        var oDate=document.getElementById('date');
+        var oP=oDate.getElementsByTagName('p');
+        function toDub(n){
+            if(n<10){
+                return '0'+n
+            }else{
+                return n+''
+            }
+        }
+        aA.onclick=function() {
+            function clock() {
+                var oV1 = aInp[0].value;
+                var oV2 = aInp[1].value;
+                var oV3 = aInp[2].value;
+
+                var oDate = new Date();
+                oDate.setFullYear(oV1, (oV2-1), oV3);
+                oDate.setHours(0, 0, 0, 0);
+                var targetTime = oDate.getTime();
+                var nowDate = new Date();
+                var now = nowDate.getTime();
+                var s = parseInt((targetTime - now) / 1000);
+                var day = parseInt(s / 86400);
+                var s = s % 86400;
+                var h = parseInt(s / 3600);
+                var s = s % 3600;
+                var m = parseInt(s / 60);
+                var s = s % 60;
+                oP[0].innerHTML = toDub(day);
+                oP[1].innerHTML = toDub(h);
+                oP[2].innerHTML = toDub(m);
+                oP[3].innerHTML = toDub(s);
+            }
+            clock()
+            setInterval(clock,1000);
+        }
+    }
+</script>
+</head>
+<body>
+
+<div id="daojishi">
+    <div id="fill_in">
+        <span class="title">请输入：</span>
+        <input type="text" class="long_text" value="" />
+        <span class="space1">年</span>
+        <input type="text" class="text" value="" />
+        <span class="space2">月</span>
+        <input type="text" class="text" value="" />
+        <span class="space3">日</span>
+    </div>
+
+    <a href="javascript:;" id="go" class="go"></a>
+
+    <p id="target">
+        现在距离 -
+        <strong>2017年1月1日</strong>
+        - 还剩：
+    </p>
+
+    <div id="date">
+        <p id="day">00</p>
+        <p id="hour">00</p>
+        <p id="min">00</p>
+        <p id="sec">00</p>
+    </div>
+
+    <h1 title="倒计数"></h1>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="暴走漫画" />
+<meta name="copyright" content="暴走漫画" />
+<meta name="description" content="暴走漫画" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+*{ margin:0; padding:0; list-style:none;}
+#div1{ width:440px; height:300px; border:1px solid #000; position:absolute; left:50%; margin-left:-220px; margin-top:-150px; top:50%; overflow:hidden;}
+#div1 img{ position:absolute; left:0; top:0; z-index:1;}
+#div1 a{ position:absolute; left:0;width:100%; height:150px;  z-index:2; opacity:0; filter:alpha(opacity:0);}
+#top{ top:0;background:red;}
+#down{ bottom:0;background:green;}
+</style>
+    <script src="setStyle.js"></script>
+<script>
+    window.onload=function(){
+        var oImg=document.getElementsByTagName('img');
+        var oTop=document.getElementById('top');
+        var oDow=document.getElementById('down');
+        var n = 0;
+        var timer;
+        function up() {
+            if(parseInt(setstyle(oImg[0],'top'))<=-3595){
+                oImg[0].style.top='-3595px';
+            }else{
+                n-=3;
+                oImg[0].style.top = n + 'px';
+            }
+        }
+        function down() {
+            if(parseInt(setstyle(oImg[0],'top'))>=0){
+                oImg[0].style.top='0';
+            }else{
+                n+=3;
+                oImg[0].style.top = n + 'px';
+            }
+        }
+        oTop.onmouseover=function(){
+            timer=setInterval(up, 16);
+        }
+        oTop.onmouseout=function(){
+            clearInterval(timer);
+        }
+        oDow.onmouseover=function(){
+            timer=setInterval(down, 16);
+        }
+        oDow.onmouseout=function(){
+            clearInterval(timer);
+        }
+    }
+</script>
+</head>
+<body>
+<div id="div1">
+	<img src="1.jpg" id="img1">
+    <a href="javascript:;" id="top"></a>
+    <a href="javascript:;" id="down"></a>
+</div>
+</body>
+</html>
